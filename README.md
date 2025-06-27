@@ -29,7 +29,7 @@ A full-featured productivity platform built with Flask to help students organize
 [![To-Do](screenshots/todo.png.png)](https://student-helper-hub.onrender.com)
 [![Timetable](screenshots/timetable.png.png)](https://student-helper-hub.onrender.com)
 [![Notes](screenshots/notes.png.png)](https://student-helper-hub.onrender.com)
-[![Login](screenshots/login.png.png)](https://student-helper-hub.onrender.com)
+[![Login](screenshots/login.png.png)](https://student-helper-hub.onrender.com/login)
 [![Register](screenshots/register.png.png)](https://student-helper-hub.onrender.com)
 [![Guide](screenshots/guide.png.png)](https://student-helper-hub.onrender.com)
 [![Profile](screenshots/profile.png.png)](https://student-helper-hub.onrender.com)
