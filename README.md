@@ -25,14 +25,15 @@ A full-featured productivity platform built with Flask to help students organize
 > You can add images to a `screenshots/` folder and link them like this:
 
 ```markdown
-[![Dashboard](screenshots/dashboard.png)](https://studenthelperhub.vercel.app)
-[![To-Do](screenshots/todo.png)](https://studenthelperhub.vercel.app)
-[![Timetable](screenshots/timetable.png)](https://studenthelperhub.vercel.app)
-[![Notes](screenshots/notes.png)](https://studenthelperhub.vercel.app)
-[![Login](screenshots/login.png)](https://studenthelperhub.vercel.app)
-[![Register](screenshots/register.png)](https://studenthelperhub.vercel.app)
-[![Guide](screenshots/guide.png)](https://studenthelperhub.vercel.app)
-[![Profile](screenshots/profile.png)](https://studenthelperhub.vercel.app)
-[![Home](screenshots/home.png)](https://studenthelperhub.vercel.app)
-[![About](screenshots/about.png)](https://studenthelperhub.vercel.app)
-[![Contact](screenshots/contact.png)](https://studenthelperhub.vercel.app)
+[![Dashboard](screenshots/dashboard.png.png)](https://student-helper-hub.onrender.com)
+[![To-Do](screenshots/todo.png.png)](https://student-helper-hub.onrender.com)
+[![Timetable](screenshots/timetable.png.png)](https://student-helper-hub.onrender.com)
+[![Notes](screenshots/notes.png.png)](https://student-helper-hub.onrender.com)
+[![Login](screenshots/login.png.png)](https://student-helper-hub.onrender.com)
+[![Register](screenshots/register.png.png)](https://student-helper-hub.onrender.com)
+[![Guide](screenshots/guide.png.png)](https://student-helper-hub.onrender.com)
+[![Profile](screenshots/profile.png.png)](https://student-helper-hub.onrender.com)
+[![Home](screenshots/home.png.png)](https://student-helper-hub.onrender.com)
+[![About](screenshots/about.png.png)](https://student-helper-hub.onrender.com)
+[![Contact](screenshots/contact.png.png)](https://student-helper-hub.onrender.com)
+
