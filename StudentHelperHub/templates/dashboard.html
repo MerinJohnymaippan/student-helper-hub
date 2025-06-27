@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+   <!-- Updated Top Navbar -->
+   <nav class="top-navbar">
+        <div class="nav-title">Student Helper Hub</div>
+        <div class="nav-center">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('logout') }}" title="Logout">
+            <a href="{{ url_for('profile') }}" title="Profile">
+                <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+                <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+       <aside class="sidebar">
+           <h2></h2>
+           <ul>
+               
+               <li><a href="{{ url_for('todo') }}">To-Do List</a></li>
+               <li><a href="{{ url_for('notes') }}">Notes</a></li>
+               <li><a href="{{ url_for('resources') }}">Guide</a></li>
+               <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+              
+           </ul>
+       </aside>
+
+        <main class="main">
+            <header class="main-header">
+                <h1>Welcome to your Dashboard</h1>
+                <p>{{ today }}</p>
+            </header>
+
+            <section class="cards">
+                <div class="card">Tasks<br><span>{{ total_tasks }}</span></div>
+                <div class="card">Pending<br><span>{{ pending_tasks }}</span></div>
+                <div class="card">Classes<br><span>{{ today_classes_count }}</span></div>
+                <div class="card">Notes<br><span>{{ total_notes }}</span></div>
+            </section>
+
+
+            <section class="info-sections">
+                <!-- Upcoming Tasks -->
+                <div class="box">
+                    <h3>Upcoming Tasks</h3>
+                    {% if upcoming_tasks %}
+                        <ul>
+                            {% for task, due in upcoming_tasks %}
+                                <li>{{ task }} – {{ due }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No upcoming tasks.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Today’s Schedule -->
+                <div class="box">
+                    <h3>Today's Schedule</h3>
+                    {% if today_schedule %}
+                        <ul>
+                            {% for subj, start, end in today_schedule %}
+                                <li>{{ subj }} ({{ start }}‑{{ end }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No schedule for today.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Recent Notes -->
+                <div class="box full-width">
+                    <h3>Recent Notes</h3>
+                    {% if recent_notes %}
+                        <ul>
+                            {% for note in recent_notes %}
+                                <li>{{ note[0] }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No recent notes.</p>
+                    {% endif %}
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
+
+

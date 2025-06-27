@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact - Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+<!-- Top Navbar from Dashboard -->
+<nav class="top-navbar">
+    <div class="nav-title">Student Helper Hub</div>
+    <div class="nav-center">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+    <div class="navbar-right">
+        <a href="{{ url_for('profile') }}" title="Profile">
+            <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+        </a>
+        <a href="{{ url_for('logout') }}" title="Logout">
+            <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+</nav>
+
+<!-- Sidebar from Dashboard -->
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h2>SHH</h2>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('todo') }}">To-Do List</a></li>
+            <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            <li><a href="{{ url_for('resources') }}">Guide</a></li>
+            <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Contact Page Content -->
+    <main class="main">
+        <div class="page-content">
+            <h1>Contact Us</h1>
+            <p>Have questions or feedback? We'd love to hear from you.</p>
+            <!-- 👇 Flash Messages Start -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-container" style="margin-bottom: 10px;">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+                <div class="feature-card" style="max-width: 400px;">
+                    <h3>Get In Touch</h3>
+                    <p><strong>Email</strong><br>
+                        support@studenthelperhubapp.com<br>
+                    </p>
+                    <p><strong>Phone</strong><br>
+                        +1 (555) 123-4567<br>
+                        Mon–Fri, 9AM–5PM EST</p>
+                    <p><strong>Address</strong><br>
+                        123 Education Lane<br>
+                        Student City, SC 10101</p>
+                    <p><strong>Connect With Us</strong><br>
+                        <span>🌐 Facebook  🐦 Twitter  📸 Instagram  🔗 LinkedIn</span>
+                    </p>
+                </div>
+
+                <div class="feature-card" style="max-width: 500px;">
+                    <h3>Send Us a Message</h3>
+                    <form method="POST" action="{{ url_for('contact') }}">
+                        <label>Your Name</label><br>
+                        <input type="text" name="name" placeholder="John Doe" style="width: 100%; margin-bottom: 10px;" required><br>
+
+                        <label>Your Email</label><br>
+                        <input type="email" name="email" placeholder="john@example.com" style="width: 100%; margin-bottom: 10px;" required><br>
+
+                        <label>Subject</label><br>
+                        <input type="text" name="subject" placeholder="How can we help you?" style="width: 100%; margin-bottom: 10px;" required><br>
+
+                        <label>Message</label><br>
+                        <textarea name="message" placeholder="Write your message here..." style="width: 100%; height: 120px;" required></textarea><br>
+
+                        <button type="submit" class="btn-primary" style="margin-top: 10px;">📨 Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

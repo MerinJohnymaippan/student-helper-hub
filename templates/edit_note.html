@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Note - Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <h1>Edit Note</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label for="note_title">Title:</label><br>
+        <input type="text" id="note_title" name="note_title" value="{{ note['title'] }}" required><br><br>
+
+        <label for="note_content">Content:</label><br>
+        <textarea id="note_content" name="note_content" rows="6" cols="50">{{ note['content'] }}</textarea><br><br>
+
+        <label>Add Attachments:</label><br>
+        <input type="file" name="attachments" multiple><br><br>
+
+        <h3>Existing Attachments:</h3>
+        {% if note.attachments %}
+            <ul>
+                {% for attachment in note.attachments %}
+                <li>
+                    <a href="{{ url_for('static', filename='uploads/' ~ attachment.filename) }}" target="_blank">📎 {{ attachment.filename }}</a>
+                    <button 
+                        type="submit" 
+                        name="delete_attachment_id" 
+                        value="{{ attachment.id }}" 
+                        onclick="return confirm('Are you sure you want to delete this attachment?');"
+                        style="margin-left: 10px; color: red; cursor: pointer;">
+                        Delete
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No attachments.</p>
+        {% endif %}
+
+        <br>
+        <button type="submit" name="save_changes" value="1">Save Changes</button>
+    </form>
+
+    <p><a href="{{ url_for('notes') }}">Back to Notes</a></p>
+</body>
+</html>

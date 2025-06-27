@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Helper Hub - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Keep your original home styles here */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .home-main {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .home-main h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #007BFF, #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .home-main p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        .home-btn {
+            padding: 12px 30px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+        .home-features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .feature-card {
+            background-color: #f0f0f0;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card i {
+            font-size: 2rem;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            margin: 10px 0;
+            color: #222;
+        }
+        .feature-card p {
+            color: #555;
+        }
+        .feature-card a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #3339ee;
+            font-weight: bold;
+        }
+        .feature-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar from Dashboard -->
+    <nav class="top-navbar">
+        <div class="nav-title">Student Helper Hub</div>
+        <div class="nav-center">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('profile') }}" title="Profile">
+                <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+            </a>
+            <a href="{{ url_for('logout') }}" title="Logout">
+                <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sidebar from Dashboard -->
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>SHH</h2>
+            <ul>
+                <li><a href="{{ url_for('todo') }}">To-Do List</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+                <li><a href="{{ url_for('resources') }}">Guide</a></li>
+                <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Home Content -->
+        <main class="main">
+            <div class="home-main">
+                <h1><span class="gradient-text">Welcome to Student Helper Hub</span></h1>
+                <p>Your all-in-one platform for academic success. Organize notes, manage tasks,<br>and excel in your studies with our comprehensive suite of tools.</p>
+                <a href="/dashboard" class="home-btn">Go to Dashboard</a>
+
+                <div class="home-features">
+                    <div class="feature-card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Smart Notes</h3>
+                        <p>Create, organize, and access your study notes with our intuitive note-taking system.</p>
+                        <a href="/notes">Learn more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Task Management</h3>
+                        <p>Stay on top of assignments and deadlines with our comprehensive todo list feature.</p>
+                        <a href="/todo">Learn more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Reference Tools</h3>
+                        <p>Save and access helpful academic and educational resources.</p>
+                        <a href="/resources">Learn more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

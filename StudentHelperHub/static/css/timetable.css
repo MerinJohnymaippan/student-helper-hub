@@ -1,0 +1,271 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f9;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #2d3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: #1abc9c;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.main-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.timetable-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.timetable-form input,
+.timetable-form select,
+.timetable-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.timetable-form button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.timetable-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+.day-column {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.day-column h2 {
+    text-align: center;
+    color: #1abc9c;
+}
+
+.class-card {
+    background: #ecf0f1;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.class-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.class-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.delete-btn, .edit-btn {
+    font-size: 12px;
+    margin-top: 5px;
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.edit-btn {
+    color: #2980b9;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4b6cb7;
+    color: white;
+    padding: 10px 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.logout-icon {
+    width: 24px;
+    height: 24px;
+}
+.profile-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%; /* Optional: makes it a circle if the image is square */
+    cursor: pointer;
+    margin-right: 10px; /* optional spacing */
+}
+
+
+/* --- To-Do Summary Cards --- */
+.summary-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.summary-cards .card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+.summary-cards .card:hover {
+    transform: translateY(-5px);
+}
+.summary-cards .card p {
+    margin: 0;
+    font-weight: 500;
+    color: #555;
+}
+.summary-cards .card h3 {
+    margin: 5px 0 0;
+    font-size: 24px;
+    color: #222;
+}
+
+/* --- Add Task Form --- */
+.task-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.task-form input,
+.task-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 150px;
+}
+.task-form button {
+    padding: 10px 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.task-form button:hover {
+    background-color: #004999;
+}
+
+/* --- Task Table --- */
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.task-table th,
+.task-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+.task-table th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+}
+.task-table tbody tr:hover {
+    background-color: #f0f8ff;
+}
+
+/* --- Action Buttons --- */
+.done-btn,
+.delete-btn {
+    padding: 6px 12px;
+    margin: 0 3px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.done-btn {
+    background-color: #28a745;
+    color: white;
+}
+.done-btn:hover {
+    background-color: #218838;
+}
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}

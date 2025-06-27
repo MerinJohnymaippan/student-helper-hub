@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- add this immediately after the link OR at the bottom of your existing <style> -->
+<style>
+    /* --- make typed text visible only on the login page --- */
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+        color: #1f0404 !important;   /* dark text on the white card */
+    }
+</style>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background: url('{{ url_for("static", filename="images/login_bg.jpg") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-wrapper {
+            min-height: calc(100% - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 70px;
+        }
+
+        .login-box {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+            position: relative;
+            z-index: 100;
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        form {
+            position: relative;
+            z-index: 101;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            position: relative;
+            z-index: 102;
+            pointer-events: auto;
+            background: rgb(188, 172, 172);
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            margin-bottom: 18px;
+        }
+
+        .options label {
+            cursor: pointer;
+        }
+
+        .options a {
+            color: #e95a0c;
+            text-decoration: none;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background: #e95a0c;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .small-text {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.9em;
+        }
+
+        .small-text a {
+            color: #e95a0c;
+            text-decoration: none;
+        }
+
+        .legal {
+            margin-top: 18px;
+            font-size: 11px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .legal a {
+            color: #000000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2>Sign in</h2>
+            <form method="POST" action="/login">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <div class="options">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                    <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="small-text">
+                Don't have an account? <a href="/register">Register now</a>
+            </div>
+
+            <div class="legal">
+                By clicking on "Login" you agree to<br>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

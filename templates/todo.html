@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>To-Do List | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}" />
+    <style>
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .edit-form input, .edit-form select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+        }
+
+        .edit-form button {
+            padding: 10px 20px;
+            background: #5b34ea;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 6px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Student Helper Hub</h1>
+        </div>
+        <div class="navbar-center">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('logout') }}" title="Logout">
+            <a href="{{ url_for('profile') }}" title="Profile">
+                <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon" />
+                <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon" />
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>SHH</h2>
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+                <li><a href="{{ url_for('resources') }}">Guide</a></li>
+                <li><a href="{{ url_for('todo') }}" class="active">To-Do</a></li>
+                <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>My To-Do List</h1>
+
+            <!-- Summary Cards -->
+            <div class="summary-cards">
+                <div class="card"><p>Pending</p><h3>{{ pending }}</h3></div>
+                <div class="card"><p>Completed</p><h3>{{ completed }}</h3></div>
+                <div class="card"><p>Total</p><h3>{{ total }}</h3></div>
+                <div class="card"><p>Due Today</p><h3>{{ due }}</h3></div>
+            </div>
+
+            <!-- Add Task Form -->
+            <form class="task-form" method="POST" action="{{ url_for('todo') }}">
+                <input type="text" name="task" placeholder="Task Name" required />
+                <input type="text" name="description" placeholder="Description" />
+                <input type="date" name="due_date" />
+                <select name="priority">
+                    <option value="">Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+
+            <!-- Task Table -->
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task[1] }}</td>
+                        <td>{{ task[2] or '-' }}</td>
+                        <td>{{ task[3] or '-' }}</td>
+                        <td>{{ task[4] or '-' }}</td>
+                        <td>{{ 'Completed' if task[5] else 'Pending' }}</td>
+                        <td>
+                            <button class="edit-btn" onclick="openEditModal('{{ task[0] }}', '{{ task[1] }}', '{{ task[2] }}', '{{ task[3] }}', '{{ task[4] }}')">Edit</button>
+
+                            <form method="POST" action="{{ url_for('mark_done', task_id=task[0]) }}" style="display:inline;">
+                                <button class="done-btn" type="submit">{{ 'Undo' if task[5] else 'Done' }}</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('delete_task', task_id=task[0]) }}" style="display:inline;">
+                                <button class="delete-btn" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Task</h2>
+            <form id="editForm" class="edit-form" method="POST">
+                <input type="text" id="editTask" name="task" required />
+                <input type="text" id="editDesc" name="description" />
+                <input type="date" id="editDate" name="due_date" />
+                <select id="editPriority" name="priority">
+                    <option value="">Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button type="submit">Update Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(id, task, desc, date, priority) {
+            document.getElementById('editTask').value = task;
+            document.getElementById('editDesc').value = desc;
+            document.getElementById('editDate').value = date;
+            document.getElementById('editPriority').value = priority;
+
+            document.getElementById('editForm').action = "/edit_task/" + id;
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('editModal');
+            if (event.target === modal) {
+                closeEditModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

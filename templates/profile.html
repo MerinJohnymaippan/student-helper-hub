@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2></h2>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> Notes</a></li>
+            <li><a href="{{ url_for('todo') }}"><i class="fas fa-list-check"></i> Todo List</a></li>
+            <li><a href="{{ url_for('resources') }}"><i class="fas fa-folder-open"></i> Guide</a></li>
+        </ul>
+    </div>
+
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+        <div class="app-name"><strong>Student Helper Hub</strong></div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="logout-icon">
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% if not edit_mode %}
+            <h1>Your Profile</h1>
+            <p>Manage your personal information</p>
+            <a href="{{ url_for('profile') }}?edit=true" class="edit-button">Edit Profile</a>
+
+            <!-- VIEW MODE -->
+            <div class="profile-container">
+                <div class="profile-left">
+                    <div class="avatar">
+                        <img src="{{ url_for('static', filename='uploads/' + user['photo']) if user['photo'] else url_for('static', filename='default_profile.png') }}" alt="Avatar">
+                    </div>
+                    <h2>{{ user['full_name'] }}</h2>
+                    <p><i class="fas fa-envelope"></i> {{ user['email'] }}</p>
+                    <div class="meta">
+                        <p><strong>Account Type</strong><br><span class="tag">Student</span></p>
+                        <p><strong>Member Since</strong><br><i class="fas fa-calendar-alt"></i> May 2023</p>
+                    </div>
+                </div>
+
+                <div class="profile-right">
+                    <div class="section">
+                        <h3>Personal Information</h3>
+                        <div class="info-grid">
+                            <p><strong>Full Name</strong><br>{{ user['full_name'] }}</p>
+                            <p><strong>Email</strong><br>{{ user['email'] }}</p>
+                            <p><strong>Birthday</strong><br>{{ user['birthday'] or 'Not set' }}</p>
+                            <p><strong>School/University</strong><br>{{ user['school'] or 'Not set' }}</p>
+                            <p><strong>Major/Field of Study</strong><br>{{ user['major'] or 'Not set' }}</p>
+                            <p><strong>Bio</strong><br>{{ user['bio'] or 'No bio information added yet.' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Account Settings</h3>
+                        <div class="settings">
+                            <div>
+                                <p><strong>Change Password</strong><br>Update your password for better security</p>
+                                <a href="{{ url_for('change_password') }}" class="button">Change</a>
+                            </div>
+                            
+                            <div class="danger">
+                                <p><strong>Delete Account</strong><br>Permanently delete your account and all data</p>
+                                <form method="POST" action="{{ url_for('delete_account') }}" onsubmit="return confirm('Are you sure you want to delete your account?');">
+                                    <button type="submit" class="button delete">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <!-- EDIT MODE -->
+            <h1>Edit Profile</h1>
+            <form action="{{ url_for('edit_profile') }}" method="POST" enctype="multipart/form-data">
+                <div class="profile-container">
+                    <div class="profile-left">
+                        <div class="avatar-edit-section">
+                            <img src="{{ url_for('static', filename='uploads/' + user['photo']) if user['photo'] else url_for('static', filename='default_profile.png') }}" alt="Avatar">
+
+                            <!-- Upload new photo -->
+                            <label for="photo-input"><i class="fas fa-camera"></i></label>
+                            <input type="file" id="photo-input" name="photo">
+
+                            <!-- Delete current photo -->
+                            {% if user['photo'] %}
+                                <label style="display:block;margin-top:10px;">
+                                    <input type="checkbox" name="delete_photo"> Delete current photo
+                                </label>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="profile-right">
+                        <div class="section">
+                            <h3>Update Your Information</h3>
+                            <div class="info-grid">
+                                <div>
+                                    <label>Full Name</label>
+                                    <input type="text" name="full_name" value="{{ user['full_name'] }}" required>
+                                </div>
+                                <div>
+                                    <label>Email</label>
+                                    <input type="email" name="email" value="{{ user['email'] }}" required>
+                                </div>
+                                <div>
+                                    <label>Birthday</label>
+                                    <input type="date" name="birthday" value="{{ user['birthday'] }}">
+                                </div>
+                                <div>
+                                    <label>School/University</label>
+                                    <input type="text" name="school" value="{{ user['school'] }}">
+                                </div>
+                                <div>
+                                    <label>Major/Field</label>
+                                    <input type="text" name="major" value="{{ user['major'] }}">
+                                </div>
+                                <div>
+                                    <label>Bio</label>
+                                    <textarea name="bio">{{ user['bio'] }}</textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="button">Save Changes</button>
+                            <a href="{{ url_for('profile') }}" class="button">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

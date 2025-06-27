@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Task | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}">
+</head>
+<body>
+
+    <!-- Use same navbar and sidebar as your todo page -->
+
+    <div class="container">
+        <aside class="sidebar">
+            <!-- sidebar content -->
+        </aside>
+
+        <main class="main-content">
+            <h1>Edit Task</h1>
+            <form method="POST" action="{{ url_for('edit_task', task_id=task['id']) }}">
+                <input type="text" name="task" value="{{ task['text'] }}" required />
+                <input type="text" name="description" value="{{ task['description'] or '' }}" />
+                <input type="date" name="due_date" value="{{ task['due_date'] or '' }}" />
+                <select name="priority">
+                    <option value="" {% if not task['priority'] %}selected{% endif %}>Priority</option>
+                    <option value="High" {% if task['priority'] == 'High' %}selected{% endif %}>High</option>
+                    <option value="Medium" {% if task['priority'] == 'Medium' %}selected{% endif %}>Medium</option>
+                    <option value="Low" {% if task['priority'] == 'Low' %}selected{% endif %}>Low</option>
+                </select>
+                <button type="submit">Update Task</button>
+            </form>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reference Guide | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}">
+    <style>
+        .chat-box {
+            width: 70%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 250px;
+            margin-top: 40px;
+        }
+
+        .chat-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-box button {
+            background-color: #4e64ec;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .chat-box button:hover {
+            background-color: #384ed4;
+        }
+
+        .main-content h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <h1>Student Helper Hub</h1>
+    </div>
+    <div class="navbar-center">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+    <div class="navbar-right">
+        <a href="{{ url_for('logout') }}" title="Logout">
+        <a href="{{ url_for('profile') }}" title="Profile">
+            <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon" />
+            <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon" />
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>SHH</h2>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            <li><a href="{{ url_for('todo') }}">To-Do</a></li>
+            <li><a href="{{ url_for('resources') }}" class="active">Guide</a></li>
+            <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Reference Guide</h1>
+
+        <div class="chat-box">
+            <p>Hi 👋 I'm your study assistant. Ask me anything or upload an image!</p>
+            <form id="ask-form" enctype="multipart/form-data">
+                <input type="text" name="question" id="question" placeholder="Type your question..." required>
+                <input type="file" name="image" id="image">
+                <button type="submit">Send</button>
+            </form>
+            <div id="response-box" style="margin-top: 20px;"></div>
+        </div>
+    </main>
+</div>
+
+<!-- JavaScript for AJAX -->
+<script>
+document.getElementById('ask-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    const question = document.getElementById('question').value;
+    const image = document.getElementById('image').files[0];
+
+    formData.append('question', question);
+    if (image) {
+        formData.append('image', image);
+    }
+
+    const responseBox = document.getElementById('response-box');
+    responseBox.innerHTML = "⏳ Thinking...";
+
+    try {
+        const res = await fetch("/ask", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await res.json();
+        responseBox.innerHTML = `<strong>Assistant:</strong><p>${data.answer.replace(/\n/g, "<br>")}</p>`;
+    } catch (err) {
+        responseBox.innerHTML = `<span style="color:red;">⚠️ Error: ${err}</span>`;
+    }
+});
+</script>
+
+</body>
+</html>

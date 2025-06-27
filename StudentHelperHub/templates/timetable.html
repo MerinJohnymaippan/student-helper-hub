@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}">
+</head>
+<body>
+
+    <!-- Updated Navbar (copied from Notes page) -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Student Helper Hub</h1>
+        </div>
+        <div class="navbar-center">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('logout') }}" title="Logout">
+                <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+                <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>SHH</h2>
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('notes') }}">Notes</a></li>
+                <li><a href="{{ url_for('todo') }}">To-Do</a></li>
+                <li><a href="{{ url_for('resources') }}">Guide</a></li>
+                <li><a href="{{ url_for('timetable') }}" class="active">Timetable</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>My Weekly Timetable</h1>
+
+            <form method="POST" action="{{ url_for('timetable') }}" class="timetable-form">
+                <input type="text" name="subject" placeholder="Subject" required>
+                <input type="time" name="start_time" required>
+                <input type="time" name="end_time" required>
+
+                <select name="day" required>
+                    <option value="">Day</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                </select>
+                <input type="text" name="description" placeholder="Description (optional)">
+                <button type="submit">Add Class</button>
+            </form>
+
+            <div class="timetable-grid">
+                {% for day, classes in timetable.items() %}
+                <div class="day-column">
+                    <h2>{{ day }}</h2>
+                    {% for class in classes %}
+                        <div class="class-card">
+                            <h3>{{ class.subject }}</h3>
+                            <p>{{ class.start_time }} - {{ class.end_time }}</p>
+                            <p>{{ class.description }}</p>
+                            <form method="POST" action="{{ url_for('delete_timetable', id=class.id) }}" style="display:inline;">
+                                <button class="delete-btn">Delete</button>
+                            </form>
+                            <a href="{{ url_for('edit_timetable', id=class.id) }}" class="edit-btn">Edit</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

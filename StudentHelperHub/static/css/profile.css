@@ -1,0 +1,145 @@
+/* -------------------------------------------------
+   1. RESET & BASE
+--------------------------------------------------*/
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f8f9fa;
+
+    /* reserve space for fixed navbar + sidebar */
+    padding-top: 60px;   /* navbar height */
+    padding-left: 180px; /* sidebar width  */
+}
+
+/* -------------------------------------------------
+   2. SIDEBAR
+--------------------------------------------------*/
+.sidebar {
+    width: 180px;
+    height: calc(100vh - 60px);  /* full height minus navbar */
+    position: fixed;
+    top: 60px;                   /* align just under navbar  */
+    left: 0;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.sidebar h2      { font-size: 18px; margin-bottom: 30px; }
+.sidebar ul       { list-style: none; padding: 0; }
+.sidebar ul li    { margin: 20px 0; }
+.sidebar ul li a  { color: #fff; text-decoration: none; display: flex; align-items: center; }
+.sidebar ul li a i{ margin-right: 10px; }
+
+/* -------------------------------------------------
+   3. TOP NAVBAR
+--------------------------------------------------*/
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;          /* span full width */
+    right: 0;
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.top-navbar .app-name    { font-size: 18px; font-weight: 600; }
+.top-navbar .nav-links a { margin: 0 10px; color: #333; font-size: 14px; text-decoration: none; }
+.top-navbar .logout-icon a{ color: #333; font-size: 18px; }
+
+/* -------------------------------------------------
+   4. MAIN CONTENT
+--------------------------------------------------*/
+.main-content { padding: 30px; }
+h1            { font-size: 26px; margin: 0 0 5px; }
+
+/* Edit button */
+.edit-button {
+    display: inline-block;
+    margin: 10px 0 25px;
+    padding: 8px 14px;
+    background: #3f51b5;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background .2s;
+}
+.edit-button:hover { background: #303f9f; }
+
+/* -------------------------------------------------
+   5. PROFILE LAYOUT
+--------------------------------------------------*/
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.profile-left,
+.profile-right {
+    flex: 1;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+}
+.profile-left { max-width: 320px; text-align: center; }
+
+/* Avatar */
+.avatar,
+.avatar-edit-section { position: relative; margin: 0 auto 15px; width: 120px; height: 120px; }
+.avatar img, .avatar-edit-section img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #ccc;
+}
+.avatar label, .avatar-edit-section label {
+    position: absolute; bottom: 5px; right: 5px;
+    background: #3f51b5; color: #fff; border-radius: 50%; padding: 6px; cursor: pointer;
+}
+.avatar input[type=file], .avatar-edit-section input[type=file]{ display:none; }
+
+.avatar-edit-section .delete-button{
+    background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:14px;cursor:pointer;margin-top:8px;transition:background .3s;
+}
+.avatar-edit-section .delete-button:hover{background:#c0392b;}
+
+/* Meta / Info */
+.profile-left h2  { margin:10px 0 5px; }
+.profile-left p   { font-size:14px; color:#555; }
+.meta             { margin-top:15px; }
+.meta p           { margin:5px 0; }
+.meta .tag        { color:#3f51b5; font-weight:700; }
+.section          { margin-bottom:25px; }
+.info-grid        { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.info-grid p,
+.info-grid label  { font-size:14px; }
+.info-grid input,
+.info-grid textarea{ width:100%; padding:8px; font-size:14px; border:1px solid #ccc; border-radius:6px; }
+
+/* Buttons */
+.button{
+    background:#3f51b5;color:#fff;border:none;border-radius:5px;padding:8px 12px;cursor:pointer;margin-top:10px;text-decoration:none;display:inline-block;
+}
+.button:hover    { background:#303f9f; }
+.button.delete   { background:#e53935; }
+.button.delete:hover { background:#c62828; }
+.settings > div   { margin-bottom:15px; }
+.danger           { border-top:1px solid #ddd; padding-top:15px; }
+
+/* -------------------------------------------------
+   6. RESPONSIVE
+--------------------------------------------------*/
+@media (max-width:768px){
+    body{ padding-top:60px; padding-left:0; }
+    .sidebar{ position:static; width:100%; height:auto; top:0; }
+    .top-navbar{ position:fixed; left:0; }
+    .profile-container{ flex-direction:column; }
+}

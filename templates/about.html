@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .about-container h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .about-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .about-card {
+            background: #f0f8ff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .value-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-box {
+            flex: 1;
+            min-width: 250px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .value-box i {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navbar from Dashboard -->
+<nav class="top-navbar">
+    <div class="nav-title">Student Helper Hub</div>
+    <div class="nav-center">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+    <div class="navbar-right">
+        <a href="{{ url_for('profile') }}" title="Profile">
+            <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+        </a>
+        <a href="{{ url_for('logout') }}" title="Logout">
+            <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+</nav>
+
+<!-- Sidebar from Dashboard -->
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h2></h2>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('todo') }}">To-Do List</a></li>
+            <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            <li><a href="{{ url_for('resources') }}">Guide</a></li>
+            <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main About Page Content -->
+    <main class="main">
+        <div class="about-container">
+            <h1>About Student Helper Hub</h1>
+            <p class="about-subtitle">Your all-in-one platform for academic success</p>
+
+            <div class="about-card">
+                <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p>
+                    We're on a mission to empower students to achieve academic excellence through
+                    organization, focus, and effective study habits.
+                </p>
+                <p>
+                    Our platform is designed with students at the center, creating a digital ecosystem
+                    that helps them stay on top of responsibilities and maintain a healthy work-life balance.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-heart"></i> Our Values</h2>
+                <div class="value-grid">
+                    <div class="value-box">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Student-Centered</h3>
+                        <p>We start with the question: "How will this make students’ lives better?"</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Privacy & Security</h3>
+                        <p>Your academic data is treated with the highest level of protection.</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-users"></i>
+                        <h3>Inclusivity</h3>
+                        <p>We design for all learning styles and accessibility needs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-star"></i> Key Features</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chart-pie"></i> <strong>Dashboard:</strong> Overview of deadlines, progress, and stats.</li>
+                    <li><i class="fas fa-book"></i> <strong>Smart Notes:</strong> Organized and searchable note-taking system.</li>
+                    <li><i class="fas fa-tasks"></i> <strong>Todo List:</strong> Prioritize academic tasks easily.</li>
+                    <li><i class="fas fa-link"></i> <strong>Reference Hub:</strong> Curated academic resources.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,561 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+nav {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    text-align: center;
+    margin-top: 100px; /* To avoid navbar overlap */
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: white;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+}
+
+.login-box input::placeholder {
+    color: #f0f0f0;
+    font-size: 14px;
+}
+
+.login-box button {
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-box button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-box a {
+    color: #ffffff;
+    font-size: 0.95em;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
+
+.small-text {
+    font-size: 0.9em;
+    margin-top: 20px;
+    color: white;
+}
+
+label {
+    color: white;
+    font-size: 14px;
+}
+.about-container {
+    margin-top: 100px;
+    padding: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-subtitle {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    color: white;
+}
+
+.about-card h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.about-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-card li {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.value-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.value-box {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.value-box i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #ffff66;
+}
+
+.value-box h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+.logout-icon {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.logout-icon a {
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.logout-icon a:hover {
+    color: #ff4d4d;
+}
+.todo-body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    font-weight: bold;
+    color: #2956d9;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: #e4edff;
+    color: #2956d9;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.todo-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: auto;
+}
+
+.todo-container h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.todo-form {
+    margin-bottom: 30px;
+}
+
+.todo-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-form input[type="text"],
+.todo-form input[type="date"] {
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.todo-form button {
+    padding: 10px;
+    background-color: #2956d9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.todo-form button:hover {
+    background-color: #1e42b3;
+}
+
+.todo-tasks {
+    background: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.todo-tasks ul {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-tasks li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.no-tasks {
+    color: #777;
+    font-style: italic;
+}
+/* ==== TODO Enhanced Styles (for todo.html only) ==== */
+
+.todo-summary {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.todo-summary .card {
+    background: linear-gradient(135deg, #2956d9, #3b82f6);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.todo-summary .card:hover {
+    transform: translateY(-5px);
+}
+
+.todo-summary .card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.todo-summary .card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Task Filter Buttons */
+.todo-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.todo-filters button {
+    background-color: #2956d9;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: 500;
+}
+
+.todo-filters button:hover,
+.todo-filters button.active {
+    background-color: #1d3fb8;
+}
+
+/* Task List Grid */
+.todo-task-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.todo-task {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.todo-task:hover {
+    background: #f8f9ff;
+}
+
+.task-info {
+    max-width: 70%;
+}
+
+.task-info h4 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.task-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.task-info small {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.task-actions form {
+    display: flex;
+    gap: 8px;
+}
+
+.task-actions button {
+    border: none;
+    background: #2956d9;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.task-actions button:hover {
+    background-color: #1d3fb8;
+}
+
+/* Dark Mode Toggle */
+.todo-dark-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.todo-dark-toggle:hover {
+    background: #111;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    background: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .todo-container,
+body.dark-mode .todo-task {
+    background: #2a2a40;
+    color: #e0e0e0;
+}
+
+body.dark-mode .todo-task:hover {
+    background: #333354;
+}
+
+body.dark-mode .todo-summary .card {
+    background: linear-gradient(135deg, #3f3fff, #5e5ef7);
+}
+
+body.dark-mode .todo-filters button {
+    background: #4444bb;
+}
+
+body.dark-mode .todo-filters button:hover,
+body.dark-mode .todo-filters button.active {
+    background: #333399;
+}
+
+body.dark-mode .task-actions button {
+    background: #4444bb;
+}
+
+body.dark-mode .task-actions button:hover {
+    background: #333399;
+}
+/* Whole page green background */
+.notes-container {
+    background-color: #2e7d32; /* deep green */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Top bar styling */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #1b5e20; /* darker green */
+}
+
+.top-left h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Centered nav */
+.top-nav {
+    display: flex;
+    gap: 25px;
+    font-weight: 600;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease; 
+}
+
+.top-nav a:hover {
+    color: #a5d6a7; /* lighter green */
+}
+.flash-container {
+    margin: 10px auto 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.flash-message {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.flash-message.success {
+    background-color: #e0f7e9;
+    color: #2e7d32;
+    border: 1px solid #81c784;
+}
+
+.flash-message.danger {
+    background-color: #ffe0e0;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+
+
+

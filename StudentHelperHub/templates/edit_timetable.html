@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Timetable Entry | Student Helper Hub</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}" />
+  <style>
+    /* Optional: add form-specific styling here or put it in timetable.css */
+
+    .timetable-form {
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .timetable-form input[type="text"],
+    .timetable-form select,
+    .timetable-form input[type="time"],
+    .timetable-form input[type="color"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .timetable-form button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .timetable-form button:hover {
+      background-color: #45a049;
+    }
+
+    .cancel-btn {
+      margin-top: 8px;
+      display: inline-block;
+      text-decoration: none;
+      color: #888;
+      font-weight: bold;
+    }
+    .cancel-btn:hover {
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="container">
+    <div class="sidebar">
+      <h2>SHH</h2>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('notes') }}">Notes</a></li>
+        <li><a href="{{ url_for('todo') }}">To-Do</a></li>
+        <li><a href="{{ url_for('resources') }}">Resources</a></li>
+        <li><a href="{{ url_for('timetable') }}" class="active">Timetable</a></li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <h1>Edit Timetable Entry</h1>
+
+      <form method="POST" action="{{ url_for('edit_timetable', id=entry['id']) }}" class="timetable-form">
+        <input type="text" name="subject" value="{{ entry.subject }}" placeholder="Subject" required />
+
+        <select name="day" required>
+          <option value="" disabled>Select Day</option>
+          {% for d in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+            <option value="{{ d }}" {% if entry.day == d %}selected{% endif %}>{{ d }}</option>
+          {% endfor %}
+        </select>
+
+        <input type="time" name="start_time" value="{{ entry.start_time }}" required />
+        <input type="time" name="end_time" value="{{ entry.end_time }}" required />
+
+        <input type="text" name="description" value="{{ entry.description }}" placeholder="Description (optional)" />
+        <input type="color" name="color" value="{{ entry.color }}" />
+
+        <button type="submit">Save Changes</button>
+        <a href="{{ url_for('timetable') }}" class="cancel-btn">Cancel</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- keep typed text visible in light box -->
+    <style>
+        .login-box input[type="text"],
+        .login-box input[type="password"],
+        .login-box input[type="email"] {
+            color: #333 !important;
+        }
+    </style>
+
+    <!-- page‑specific styles (copy of login page) -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+
+        html,body{
+            height:100%;
+            font-family:'Segoe UI',sans-serif;
+            background:url('{{ url_for("static", filename="images/login_bg.jpg") }}') no-repeat center center fixed;
+            background-size:cover;
+        }
+
+        .login-wrapper{
+            min-height:calc(100% - 70px);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding-top:70px;
+        }
+
+        .login-box{
+            width:350px;
+            background:rgba(255,255,255,0.95);
+            border-radius:10px;
+            padding:40px 30px;
+            box-shadow:0 8px 22px rgba(0,0,0,0.25);
+            position:relative;
+            z-index:100;
+        }
+
+        .login-box h2{
+            text-align:center;
+            margin-bottom:24px;
+            color:#333;
+        }
+
+        form{position:relative;z-index:101;}
+
+        .login-box input[type="text"],
+        .login-box input[type="password"],
+        .login-box input[type="email"]{
+            width:100%;
+            padding:12px 14px;
+            margin-bottom:16px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            font-size:15px;
+            position:relative;
+            z-index:102;
+            pointer-events:auto;
+            background:rgb(38, 29, 29);
+        }
+
+        .login-box button{
+            width:100%;
+            padding:12px;
+            background:#e95a0c;
+            color:rgb(140, 122, 122);
+            border:none;
+            border-radius:5px;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .small-text{
+            text-align:center;
+            margin-top:18px;
+            font-size:0.9em;
+        }
+        .small-text a{color:#e95a0c;text-decoration:none;}
+
+        .legal{
+            margin-top:18px;
+            font-size:11px;
+            text-align:center;
+            color:#8f7777;
+        }
+        .legal a{color:#666;text-decoration:underline;}
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2>Register</h2>
+            <form method="POST" action="/register">
+                <input type="text"     name="username" placeholder="Username" required>
+                <input type="email"    name="email"    placeholder="Email"    required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Register</button>
+            </form>
+
+            <div class="small-text">
+                Already have an account? <a href="/login">Login</a>
+            </div>
+
+            <div class="legal">
+                By clicking on "Register" you agree to<br>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

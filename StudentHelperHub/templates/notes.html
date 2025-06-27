@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes | Student Helper Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notes.css') }}">
+</head>
+<body>
+    <!-- Navbar (from Timetable page) -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Student Helper Hub</h1>
+        </div>
+        <div class="navbar-center">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="navbar-right">
+        
+            
+                <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-icon">
+                <img src="{{ url_for('static', filename='logout.png') }}" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar (from Timetable page, with Notes active) -->
+        <div class="sidebar">
+            <h2>SHH</h2>
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('resources') }}">Guide</a></li>
+                <li><a href="{{ url_for('todo') }}">To-Do</a></li>
+                <li><a href="{{ url_for('notes') }}" class="active">Notes</a></li>
+                <li><a href="{{ url_for('timetable') }}">Timetable</a></li>
+            </ul>
+        </div>
+
+        <!-- Notes content area -->
+        <div class="main-content">
+            <!-- Add Note Form -->
+            <div class="add-note-form">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="text" name="note_title" placeholder="Note Title" required>
+                    <textarea name="note_content" placeholder="Write your note here..." required></textarea>
+                    <input type="file" name="attachments" multiple accept=".png,.jpg,.jpeg,.gif,.pdf">
+                    <button type="submit">Save Note</button>
+                </form>
+            </div>
+
+            <!-- Notes Display -->
+            <div class="notes-display">
+                {% for note in notes %}
+                <div class="note-card" style="background-color: {{ note.color }}">
+                    <h3>{{ note.title }}</h3>
+                    <p>{{ note.content }}</p>
+
+                    {% if note.attachments %}
+                        <div class="attachments">
+                            {% for file in note.attachments %}
+                                <a href="{{ url_for('static', filename='uploads/' + file.filename) }}" target="_blank">📎 {{ file.filename }}</a><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="note-actions">
+                        <a href="{{ url_for('edit_note', note_id=note.id) }}">✏️ Edit</a>
+                        <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Delete this note?')">🗑️ Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

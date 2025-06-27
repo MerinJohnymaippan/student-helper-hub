@@ -1,0 +1,185 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Navbar (matches Timetable page) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4b6cb7;
+    color: white;
+    padding: 10px 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.logout-icon {
+    width: 24px;
+    height: 24px;
+}
+.profile-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Layout */
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* Sidebar (matches Timetable page) */
+.sidebar {
+    width: 220px;
+    background-color: #2d3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: #1abc9c;
+}
+
+/* Notes Area */
+.notes-area {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* Add Note Form */
+.add-note-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.add-note-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-note-form input[type="text"],
+.add-note-form textarea,
+.add-note-form input[type="file"],
+.add-note-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.add-note-form button {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.add-note-form button:hover {
+    background-color: #303f9f;
+}
+
+/* Notes Display */
+.notes-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+}
+
+.note-card h3 {
+    margin-top: 0;
+}
+
+.note-card a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.note-actions {
+    margin-top: 10px;
+}
+
+.note-actions a,
+.note-actions button {
+    font-size: 14px;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #3f51b5;
+}
+
+.note-actions button:hover,
+.note-actions a:hover {
+    text-decoration: underline;
+}
