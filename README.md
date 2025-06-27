@@ -1,4 +1,4 @@
-# 🎓 Student Helper Hub
+#🎓 Student Helper Hub
 
 A full-featured productivity platform built with Flask to help students manage their academic life — all in one place.
 
@@ -6,21 +6,21 @@ A full-featured productivity platform built with Flask to help students manage t
 
 ---
 
-## ✨ Features
+ ✨ Features
 
-- 🏠 **Dashboard** with summaries: Tasks, Notes, Today's Classes, Upcoming Tasks
-- 📝 **Notes** with file uploads and inline editing
-- ✅ **To-Do List** with priority levels, due reminders, and task stats
-- 🧠 **AI Study Assistant** powered by Gemini (text + image input)
-- 🗓️ **Timetable** with file attachments and color-coded class blocks
-- 📁 **Resources 
-- 👤 **User Profile** with photo upload, edit/delete, and info panel
-- 🔐 **Authentication**: Register, Login, Forgot & Reset Password
-- 📬 **Contact Form** with email delivery
+- 🏠 Dashboard with summaries: Tasks, Notes, Today's Classes, Upcoming Tasks
+- 📝 Notes with file uploads and inline editing
+- ✅ To-Do Listwith priority levels, due reminders, and task stats
+- 🧠 AI Study Assistant powered by Gemini (text + image input)
+- 🗓️ Timetable with file attachments and color-coded class blocks
+- 📁 Resources :Guide
+- 👤 User Profilewith photo upload, edit/delete, and info panel
+- 🔐 Authentication: Register, Login, Forgot & Reset Password
+- 📬 Contact Form*:with email delivery
 
 ---
 
-## 🖼️ Preview
+🖼️ Preview
 
 > Click any image below to view the live app
 
@@ -38,17 +38,17 @@ A full-featured productivity platform built with Flask to help students manage t
 
 ---
 
-## 📦 Tech Stack
+ 📦 Tech Stack
 
-- **Backend**: Flask, SQLite
-- **Frontend**: HTML, CSS, JS (Vanilla)
-- **AI Integration**: Gemini 1.5 via Google GenerativeAI
-- **Deployment**: Render
-- **Email**: Flask-Mail
+- Backend**: Flask, SQLite
+- Frontend: HTML, CSS, JS (Vanilla)
+- AI Integration: Gemini 1.5 via Google GenerativeAI
+- Deployment: Render
+- Email: Flask-Mail
 
 ---
 
-## ⚙️ Setup Instructions (Local)
+⚙️ Setup Instructions (Local)
 
 1. Clone the repo:
    ```bash
